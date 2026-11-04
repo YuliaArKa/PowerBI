@@ -1,0 +1,34 @@
+table 'Date Periods'
+	lineageTag: 6a5b6265-b581-5854-962e-a37eb460f834
+
+	column 'TIME_PERIOD'
+		dataType: dateTime
+		lineageTag: 5bedf897-b169-566b-979c-b9365386a19a
+		formatString: dd/MM/yyyy
+		summarizeBy: none
+		sourceColumn: [TIME_PERIOD]
+
+	column 'Type'
+		dataType: string
+		lineageTag: 05c2bb85-5071-5d76-af4f-2c2e192623e6
+		summarizeBy: none
+		sourceColumn: [Type]
+		sortByColumn: 'Sort'
+
+	column 'Sort'
+		dataType: int64
+		lineageTag: 4a1ef9e8-4411-574f-a20e-5d4059ef664d
+		isHidden
+		summarizeBy: none
+		sourceColumn: [Sort]
+
+	partition 'Date Periods' = calculated
+		mode: import
+		source =
+			VAR EndDate = MAX('Date'[Date])
+			RETURN
+			UNION(
+			    SELECTCOLUMNS(FILTER('Date', 'Date'[Date] > EDATE(EndDate, -12)), "TIME_PERIOD", 'Date'[Date], "Type", "1Y", "Sort", 1),
+			    SELECTCOLUMNS(FILTER('Date', 'Date'[Date] > EDATE(EndDate, -60)), "TIME_PERIOD", 'Date'[Date], "Type", "5Y", "Sort", 2),
+			    SELECTCOLUMNS('Date', "TIME_PERIOD", 'Date'[Date], "Type", "All", "Sort", 3)
+			)

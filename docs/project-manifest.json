@@ -1,0 +1,158 @@
+{
+  "tables": {
+    "Fact": {
+      "columns": {
+        "FREQ": "string",
+        "Legend": "string",
+        "OBS_VALUE": "double",
+        "SERIES_CODE": "string",
+        "SeriesName": "string",
+        "TIME_PERIOD": "dateTime"
+      },
+      "lineageTag": "4d50210e-459d-59e1-b0c6-911b1475f5dd"
+    },
+    "Date": {
+      "columns": {
+        "Date": "dateTime",
+        "Year": "int64",
+        "Month Number": "int64",
+        "Quarter": "int64",
+        "Week Number": "string",
+        "Year_Month": "string",
+        "DateForGraph_M": "dateTime"
+      },
+      "lineageTag": "6146d184-6189-5dc9-81ba-d0db1874277d"
+    },
+    "Date2": {
+      "columns": {
+        "Date": "dateTime"
+      },
+      "lineageTag": "e61909d3-f33d-5a37-ba6b-cda42702781e"
+    },
+    "Date Periods": {
+      "columns": {
+        "TIME_PERIOD": "dateTime",
+        "Type": "string",
+        "Sort": "int64"
+      },
+      "lineageTag": "6a5b6265-b581-5854-962e-a37eb460f834"
+    },
+    "Date Periods2": {
+      "columns": {
+        "TIME_PERIOD": "dateTime",
+        "Type": "string",
+        "Sort": "int64"
+      },
+      "lineageTag": "0b93692b-1f2b-51d6-b124-7483a36ba3b4"
+    },
+    "GraphTbl": {
+      "columns": {
+        "graph_id": "string",
+        "graph_name": "string",
+        "index_in_page": "int64",
+        "page": "string",
+        "graph_subtitle": "string",
+        "graph_kind": "string"
+      },
+      "lineageTag": "3b216367-7484-58b8-832c-c30d84e42b2c"
+    },
+    "SeriesGraphTbl": {
+      "columns": {
+        "mapping_id": "string",
+        "graph_id": "string",
+        "series_code_id": "string",
+        "series_name_in_graph": "string",
+        "row_label": "string",
+        "series_order": "int64",
+        "transform": "string",
+        "axis": "string",
+        "definition_status": "string"
+      },
+      "lineageTag": "2be3ea23-8dc2-528f-8e78-e01c8b334749"
+    },
+    "DimSeries": {
+      "columns": {
+        "SERIES_CODE": "string"
+      },
+      "lineageTag": "24040e40-ac81-5dbf-92c5-50397dc5334a"
+    },
+    "MeasuresTable": {
+      "columns": {
+        "Column": "int64"
+      },
+      "lineageTag": "925927aa-a1d2-5459-acc5-c6e752721a95"
+    }
+  },
+  "measures": [
+    "Observation Count",
+    "Data Status",
+    "Raw Value",
+    "Mapped Raw",
+    "YoY",
+    "Moving Average 3M",
+    "Moving Average 4Q",
+    "YoY Moving Average 3M",
+    "Chart Value",
+    "Unemployment",
+    "Participation",
+    "Employment Rate",
+    "Employee Jobs YoY",
+    "Employed YoY",
+    "Vacancies",
+    "Vacancy Rate",
+    "Wage Change",
+    "Wage Change MA4Q",
+    "KPI As Of",
+    "KPI Month",
+    "KPI Value",
+    "KPI Previous Value",
+    "Is Rate",
+    "KPI Change",
+    "KPI Value Text",
+    "KPI Change Text",
+    "KPI Trend",
+    "KPI Sort",
+    "DownloadLink_LBM_g01",
+    "DownloadLink_LBM_g02",
+    "DownloadLink_LBM_g03",
+    "DownloadLink_LBM_g04"
+  ],
+  "homePage": "home_labor_market",
+  "panels": {
+    "g01": {
+      "chart": [
+        "b8b52935b369a9ab2852"
+      ],
+      "dateSlicer": "5744bf50ff0b411aeb83",
+      "periodSlicer": "093bd76b32fc07a7339e"
+    },
+    "g02": {
+      "chart": [
+        "2e828cb5118f8c70b274"
+      ],
+      "dateSlicer": "2fe8be202510fbdb34ff",
+      "periodSlicer": "c920a1195a46f0cbf069"
+    },
+    "g03": {
+      "chart": [
+        "23f2c87e0d216e743f1d"
+      ],
+      "dateSlicer": "1f90f13901e76f053301",
+      "periodSlicer": "df13b9590661ff5a88ac"
+    },
+    "g04": {
+      "chart": [
+        "fd2e5b53f0b597ed6feb"
+      ],
+      "dateSlicer": "a286fa36d9e3024f2935",
+      "periodSlicer": "29e840050ac7cdbded93"
+    }
+  },
+  "canvas": {
+    "width": 1300,
+    "height": 1450
+  },
+  "graphs": 48,
+  "seriesMappings": 167,
+  "observationsGenerated": 0
+}

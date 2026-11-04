@@ -1,0 +1,26 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+ref table 'Fact'
+
+ref table 'Date'
+
+ref table 'Date2'
+
+ref table 'Date Periods'
+
+ref table 'Date Periods2'
+
+ref table 'GraphTbl'
+
+ref table 'SeriesGraphTbl'
+
+ref table 'DimSeries'
+
+ref table 'MeasuresTable'

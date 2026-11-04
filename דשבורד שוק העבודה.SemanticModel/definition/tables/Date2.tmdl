@@ -1,0 +1,16 @@
+table 'Date2'
+	lineageTag: e61909d3-f33d-5a37-ba6b-cda42702781e
+	dataCategory: Time
+
+	column 'Date'
+		dataType: dateTime
+		lineageTag: 3ce8b71d-fbbf-5c5d-bffd-f3ce4aa6e69d
+		isKey
+		formatString: dd/MM/yyyy
+		summarizeBy: none
+		sourceColumn: [Date]
+
+	partition 'Date2' = calculated
+		mode: import
+		source =
+			SELECTCOLUMNS('Date', "Date", 'Date'[Date])

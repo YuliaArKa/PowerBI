@@ -1,0 +1,66 @@
+table 'SeriesGraphTbl'
+	lineageTag: 2be3ea23-8dc2-528f-8e78-e01c8b334749
+
+	column 'mapping_id'
+		dataType: string
+		lineageTag: c2a6e7f3-afad-5783-abb1-ae0c9ed2f7fa
+		summarizeBy: none
+		sourceColumn: mapping_id
+
+	column 'graph_id'
+		dataType: string
+		lineageTag: 6d8be6dd-6492-52c5-bda1-a71117045e50
+		summarizeBy: none
+		sourceColumn: graph_id
+
+	column 'series_code_id'
+		dataType: string
+		lineageTag: 0e79c8a4-7ec9-5494-9252-fc721b2835e9
+		summarizeBy: none
+		sourceColumn: series_code_id
+
+	column 'series_name_in_graph'
+		dataType: string
+		lineageTag: 1c2c829f-4a51-5b8f-9ca7-6aca9b8c0b64
+		summarizeBy: none
+		sourceColumn: series_name_in_graph
+
+	column 'row_label'
+		dataType: string
+		lineageTag: 95948882-9eb6-5438-859b-6a6f2a7c482d
+		summarizeBy: none
+		sourceColumn: row_label
+
+	column 'series_order'
+		dataType: int64
+		lineageTag: 8008c942-c658-5b3f-9336-60a4de43380e
+		summarizeBy: none
+		sourceColumn: series_order
+
+	column 'transform'
+		dataType: string
+		lineageTag: d5bec44c-33d8-573e-8e0f-e06ed2d2461e
+		summarizeBy: none
+		sourceColumn: transform
+
+	column 'axis'
+		dataType: string
+		lineageTag: 31e39973-2dc9-5612-bd92-31e6b56ee0f2
+		summarizeBy: none
+		sourceColumn: axis
+
+	column 'definition_status'
+		dataType: string
+		lineageTag: 8607e71a-cbcb-5a73-bb00-ead1bb073ed0
+		summarizeBy: none
+		sourceColumn: definition_status
+
+	partition 'SeriesGraphTbl' = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "/SeriesGraphTbl.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+			    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+			    Typed = Table.TransformColumnTypes(Headers, {{"mapping_id", type text}, {"graph_id", type text}, {"series_code_id", type text}, {"series_name_in_graph", type text}, {"row_label", type text}, {"series_order", Int64.Type}, {"transform", type text}, {"axis", type text}, {"definition_status", type text}}, "en-US")
+			in
+			    Typed

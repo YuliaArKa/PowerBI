@@ -1,0 +1,2 @@
+expression DataFolder = "C:/PowerBI/LaborMarket/data" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: f4616d88-6f2e-5371-a8d1-3aedb41da58a

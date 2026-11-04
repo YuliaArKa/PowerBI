@@ -1,0 +1,9 @@
+{
+  "name": "labor-market-m-validation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Optional Microsoft Power Query syntax checker",
+  "dependencies": {
+    "@microsoft/powerquery-parser": "0.18.2"
+  }
+}

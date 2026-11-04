@@ -1,0 +1,18 @@
+table 'DimSeries'
+	lineageTag: 24040e40-ac81-5dbf-92c5-50397dc5334a
+
+	column 'SERIES_CODE'
+		dataType: string
+		lineageTag: 6c6d809a-90d3-5fcc-90d4-2467328c42d5
+		summarizeBy: none
+		sourceColumn: SERIES_CODE
+
+	partition 'DimSeries' = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "/DimSeries.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+			    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+			    Typed = Table.TransformColumnTypes(Headers, {{"SERIES_CODE", type text}}, "en-US")
+			in
+			    Typed

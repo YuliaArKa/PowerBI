@@ -1,0 +1,26 @@
+# Catalogue normalization
+
+- g32: empty graph placeholder retained in original source only.
+- g33: empty graph placeholder retained in original source only.
+- g34: empty graph placeholder retained in original source only.
+- g35: empty graph placeholder retained in original source only.
+- g36: empty graph placeholder retained in original source only.
+- line 78: routed LS11_LMS_AW_<X>_NO_FRN_M_SA from g21 to g22 by its metric; original preserved.
+- line 79: routed AW_NO_FRN_M_SA from g21 to g22 by its metric; original preserved.
+- line 80: routed CLS11_WT_<X>_NO_FRN_M_SA from g21 to g23 by its metric; original preserved.
+- line 81: routed CLS11_WT_NO_FRN_M_SA from g21 to g23 by its metric; original preserved.
+- line 82: routed CLS11_LMS_JOB_OPENINGS_<X>_M_SA from g21 to g24 by its metric; original preserved.
+- line 83: routed LMS_JOB_OPENINGS_TOT_M_SA from g21 to g24 by its metric; original preserved.
+- line 96: normalized kpi6 to kpi06.
+- g25: no supplied series definition; no series codes have been invented.
+- g26: no supplied series definition; no series codes have been invented.
+- g27: no supplied series definition; no series codes have been invented.
+- g28: no supplied series definition; no series codes have been invented.
+- g29: no supplied series definition; no series codes have been invented.
+- g30: no supplied series definition; no series codes have been invented.
+- g31: no supplied series definition; no series codes have been invented.
+- kpi17: no supplied series definition; no series codes have been invented.
+- Provider-looking LS11_ codes are preserved exactly; verify them before requesting provider data.
+- CSV descriptions and source labels are reference metadata, not proof of data availability.
+- Only the four home-page graphs have implemented chart transformations. Other graph transforms are an extensible catalogue, not a completed set of report pages.
+- No observation data was supplied. observations.csv intentionally contains only a header.

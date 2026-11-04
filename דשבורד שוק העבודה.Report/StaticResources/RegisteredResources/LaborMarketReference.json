@@ -1,0 +1,28 @@
+{
+  "name": "LaborMarketReference",
+  "dataColors": [
+    "#089BB4",
+    "#F18A18",
+    "#38832B"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#193B60",
+  "tableAccent": "#089BB4",
+  "textClasses": {
+    "label": {
+      "fontFace": "Arial",
+      "fontSize": 11,
+      "color": "#728197"
+    },
+    "title": {
+      "fontFace": "Arial",
+      "fontSize": 16,
+      "color": "#193B60"
+    },
+    "callout": {
+      "fontFace": "Arial",
+      "fontSize": 16,
+      "color": "#193B60"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+table 'GraphTbl'
+	lineageTag: 3b216367-7484-58b8-832c-c30d84e42b2c
+
+	column 'graph_id'
+		dataType: string
+		lineageTag: cfdfe624-8cc1-528e-aaa7-0e8c2ca9141e
+		summarizeBy: none
+		sourceColumn: graph_id
+
+	column 'graph_name'
+		dataType: string
+		lineageTag: 9363d876-dceb-5c69-ae95-79a64ff56c8b
+		summarizeBy: none
+		sourceColumn: graph_name
+
+	column 'index_in_page'
+		dataType: int64
+		lineageTag: 6e470934-7cc9-5add-80f6-2353e568d478
+		summarizeBy: none
+		sourceColumn: index_in_page
+
+	column 'page'
+		dataType: string
+		lineageTag: 0cd2be56-6f17-57e9-8ba1-9d58887acd1d
+		summarizeBy: none
+		sourceColumn: page
+
+	column 'graph_subtitle'
+		dataType: string
+		lineageTag: 67f3500b-d58e-5eb8-8118-404b571e72c2
+		summarizeBy: none
+		sourceColumn: graph_subtitle
+
+	column 'graph_kind'
+		dataType: string
+		lineageTag: e48e0bdc-4f18-5d1d-bcc3-b25f37e2095e
+		summarizeBy: none
+		sourceColumn: graph_kind
+
+	partition 'GraphTbl' = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "/GraphTbl.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+			    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+			    Typed = Table.TransformColumnTypes(Headers, {{"graph_id", type text}, {"graph_name", type text}, {"index_in_page", Int64.Type}, {"page", type text}, {"graph_subtitle", type text}, {"graph_kind", type text}}, "en-US")
+			in
+			    Typed

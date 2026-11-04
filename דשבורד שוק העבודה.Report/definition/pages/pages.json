@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.0.0/schema.json",
+  "pageOrder": [
+    "home_labor_market",
+    "catalogue_1",
+    "catalogue_2",
+    "catalogue_3",
+    "catalogue_4",
+    "catalogue_5",
+    "catalogue_6",
+    "export_g01",
+    "export_g02",
+    "export_g03",
+    "export_g04"
+  ],
+  "activePageName": "home_labor_market"
+}

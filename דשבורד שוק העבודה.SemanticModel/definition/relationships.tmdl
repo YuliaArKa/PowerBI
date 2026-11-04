@@ -1,0 +1,26 @@
+relationship f5d1f6ba-5a65-5d3a-8324-5dfffff524d3
+	fromColumn: 'Fact'.'TIME_PERIOD'
+	toColumn: 'Date'.'Date'
+
+relationship 10dadc95-d0f2-52f5-adb3-772901754542
+	fromColumn: 'Fact'.'TIME_PERIOD'
+	toColumn: 'Date2'.'Date'
+
+relationship d530de96-09f3-586b-87c3-103192adbd32
+	fromColumn: 'Date Periods'.'TIME_PERIOD'
+	toColumn: 'Date'.'Date'
+	crossFilteringBehavior: bothDirections
+
+relationship fc12d495-fafc-548e-bf88-95c085b6fe7c
+	fromColumn: 'Date Periods2'.'TIME_PERIOD'
+	toColumn: 'Date2'.'Date'
+	crossFilteringBehavior: bothDirections
+
+relationship ffd0e9e4-da8d-59f2-ba31-db1be99bd024
+	fromColumn: 'Fact'.'SERIES_CODE'
+	toColumn: 'DimSeries'.'SERIES_CODE'
+
+relationship 88acc58a-102f-5170-a929-ee69d5a4a121
+	fromColumn: 'SeriesGraphTbl'.'graph_id'
+	toColumn: 'GraphTbl'.'graph_id'
+

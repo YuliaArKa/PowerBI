@@ -1,0 +1,9 @@
+.pbi/
+**/.pbi/
+*.pbix
+__pycache__/
+.venv/
+data/observations.local.csv
+**/bin/
+**/obj/
+node_modules/

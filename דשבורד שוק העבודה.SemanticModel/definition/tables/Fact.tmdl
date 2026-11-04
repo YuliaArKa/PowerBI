@@ -1,0 +1,74 @@
+table 'Fact'
+	lineageTag: 4d50210e-459d-59e1-b0c6-911b1475f5dd
+
+	column 'FREQ'
+		dataType: string
+		lineageTag: ba2b32b7-157e-5a3d-a1b3-62dddb4c6b4a
+		summarizeBy: none
+		sourceColumn: FREQ
+
+	column 'Legend'
+		dataType: string
+		lineageTag: d262cfc0-a252-501f-9904-a75463ce5e13
+		summarizeBy: none
+		sourceColumn: Legend
+
+	column 'OBS_VALUE'
+		dataType: double
+		lineageTag: 0aadf992-c06a-530c-871c-87d8d944a29f
+		formatString: #,0.0
+		summarizeBy: none
+		sourceColumn: OBS_VALUE
+
+	column 'SERIES_CODE'
+		dataType: string
+		lineageTag: 0f536fd3-78fe-5a2d-a9a0-ad2252b571bc
+		summarizeBy: none
+		sourceColumn: SERIES_CODE
+
+	column 'SeriesName'
+		dataType: string
+		lineageTag: b34a406b-17f4-5867-9c45-94423cf620f2
+		summarizeBy: none
+		sourceColumn: SeriesName
+
+	column 'TIME_PERIOD'
+		dataType: dateTime
+		lineageTag: 1b159ca5-6380-558a-aa11-a7a2990caec6
+		formatString: dd/MM/yyyy
+		summarizeBy: none
+		sourceColumn: TIME_PERIOD
+
+	partition 'Fact' = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "/observations.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+			    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+			    EmptyObservations = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"OBS_VALUE"}),
+			    Typed = Table.TransformColumnTypes(EmptyObservations, {{"FREQ", type text}, {"TIME_PERIOD", type date}, {"SERIES_CODE", type text}, {"OBS_VALUE", type number}, {"SeriesName", type text}, {"Legend", type text}}, "en-US") ,
+			    ConversionErrors = Table.RowCount(Table.SelectRowsWithErrors(Typed)) > 0,
+			    RequiredKeys = Table.SelectRows(Typed, each [TIME_PERIOD] <> null and [SERIES_CODE] <> null and Text.Trim([SERIES_CODE]) <> ""),
+			    InvalidKeys = Table.RowCount(Typed) <> Table.RowCount(RequiredKeys),
+			    InvalidCodes = Table.RowCount(Table.SelectRows(RequiredKeys, each Text.Trim([SERIES_CODE]) <> [SERIES_CODE] or Text.Contains([SERIES_CODE], ",") or Text.Contains([SERIES_CODE], "<X>"))) > 0,
+			    UniqueKeys = Table.Distinct(RequiredKeys, {"TIME_PERIOD", "SERIES_CODE"}),
+			    HasDuplicates = Table.RowCount(UniqueKeys) <> Table.RowCount(RequiredKeys),
+			    InvalidFrequency = Table.RowCount(Table.SelectRows(RequiredKeys, each not List.Contains({"M", "Q", "W", "D", "A"}, [FREQ]))) > 0,
+			    FrequencyCounts = Table.Group(RequiredKeys, {"SERIES_CODE"}, {{"FrequencyCount", each List.Count(List.Distinct([FREQ])), Int64.Type}}),
+			    MixedFrequency = Table.RowCount(Table.SelectRows(FrequencyCounts, each [FrequencyCount] > 1)) > 0,
+			    InvalidPeriod = Table.RowCount(Table.SelectRows(RequiredKeys, each
+			        (List.Contains({"M", "Q", "A"}, [FREQ]) and Date.Day([TIME_PERIOD]) <> 1) or
+			        ([FREQ] = "Q" and not List.Contains({1, 4, 7, 10}, Date.Month([TIME_PERIOD]))) or
+			        ([FREQ] = "A" and Date.Month([TIME_PERIOD]) <> 1))) > 0,
+			    NonFiniteValue = Table.RowCount(Table.SelectRows(RequiredKeys, each [OBS_VALUE] <> null and (Number.IsNaN([OBS_VALUE]) or [OBS_VALUE] = #infinity or [OBS_VALUE] = -#infinity))) > 0,
+			    Result = if ConversionErrors then error "Invalid observation column type. Check dates and decimal values."
+			        else if InvalidKeys then error "Each observation needs TIME_PERIOD and SERIES_CODE."
+			        else if InvalidCodes then error "Each SERIES_CODE must be one trimmed concrete code."
+			        else if HasDuplicates then error "Duplicate SERIES_CODE/TIME_PERIOD observations are not allowed."
+			        else if InvalidFrequency then error "FREQ must be M, Q, W, D, or A."
+			        else if MixedFrequency then error "A series cannot mix frequencies."
+			        else if InvalidPeriod then error "Monthly, quarterly, and annual observations must use period-start dates."
+			        else if NonFiniteValue then error "OBS_VALUE must be finite or null."
+			        else RequiredKeys
+			in
+			    Result

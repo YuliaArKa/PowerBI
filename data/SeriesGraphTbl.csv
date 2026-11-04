@@ -1,0 +1,168 @@
+﻿mapping_id,graph_id,series_code_id,series_name_in_graph,row_label,series_order,transform,axis,definition_status
+4a18eeccb39f18c17b65,g01,UE_R_A25_64_M_SA,אבטלה,אבטלה,1,Raw,Primary,Mapped
+5571c222e89e7385f075,g01,LF_R_A25_64_M_SA,השתתפות,השתתפות,2,Raw,Secondary,Mapped
+5c9570db6c3073a78459,g01,EM_R_A25_64_M_SA,תעסוקה,תעסוקה,3,Raw,Secondary,Mapped
+83586fbb5ccdb01880a9,g02,EP_M_SA,משרות שכיר,משרות שכיר,1,YoY_MA3,Primary,Mapped
+3085e81b2a8ed130b099,g02,EM_M_SA,מועסקים,מועסקים,2,YoY_MA3,Primary,Mapped
+0609696f942a05cb6fda,g03,LMS_JOB_OPENINGS_TOT_M_SA,"סה""כ","סה""כ",1,MA3,Primary,Mapped
+f72a7be85be3aa4586ad,g03,LMS_JOB_OPENINGS_TOT_PCT_M_SA,שיעור (ציר משני),שיעור (ציר משני),2,MA3,Secondary,Mapped
+1818b9792df9027f3c17,g04,AW_ANNPCT_Q_SA,ערך,ערך,1,Raw,Primary,Mapped
+f7f3cac393062b87c58b,g04,AW_ANNPCT_Q_SA,ממוצע נע 4 תקופות,ממוצע נע 4 תקופות,2,MA4Q,Primary,Mapped
+1bd365c01af15fc19a8a,kpi01,UE_R_A25_64_M_SA,"שיעור הבלתי מועסקים, ההשתתפות והתעסוקה (25-64)",בלתי מועסקים,3,Raw,Primary,Mapped
+171631e2310e6a9b2df9,kpi01,LF_R_A25_64_M_SA,"שיעור הבלתי מועסקים, ההשתתפות והתעסוקה (25-64)",השתתפות,1,Raw,Primary,Mapped
+cf9bab53db66f7956174,kpi01,EM_R_A25_64_M_SA,"שיעור הבלתי מועסקים, ההשתתפות והתעסוקה (25-64)",תעסוקה,2,Raw,Primary,Mapped
+1de98b09201792fe780a,kpi02,EP_M_SA,(אלפים) משרות שכיר ומועסקים,משרות שכיר,2,Raw,Primary,Mapped
+3a385da17d4b66a82089,kpi02,EM_M_SA,(אלפים) משרות שכיר ומועסקים,מועסקים,1,Raw,Primary,Mapped
+345b1399c554f991625b,kpi03,LMS_JOB_OPENINGS_TOT_M_SA,משרות פנויות,מספר,1,Raw,Primary,Mapped
+67d6b4ac446e695551da,kpi03,LMS_JOB_OPENINGS_TOT_PCT_M_SA,משרות פנויות,שיעור,2,Raw,Primary,Mapped
+ddb2b90f94a0776dbab5,kpi04,AW_M_SA,שכר נומינלי,סה״כ,3,Raw,Primary,Mapped
+c812615db73e28418f57,kpi04,AW_BS_M_SA,שכר נומינלי,הסקטור העסקי,1,Raw,Primary,Mapped
+2146dd6e7479d34146ff,kpi04,AW_8_M_SA,שכר נומינלי,השירותים הציבוריים,2,Raw,Primary,Mapped
+d8a2edd5f844d595d5dd,g05,LF_R_A25_64_M_SA,"סה""כ","סה""כ",1,Raw,Primary,Mapped
+953a97ec1ac35582e059,g05,LF_R_A25_64_FEM_M_SA,נשים,נשים,2,Raw,Primary,Mapped
+bb3805a1788348c914e9,g05,LF_R_A25_64_MAL_M_SA,גברים,גברים,3,Raw,Primary,Mapped
+f6a4b56994392344f6e8,g06,POP_A25_64_M,אלפים,אלפים,1,Raw,Primary,Mapped
+59e4c758cdfad37bd801,g06,POP_A25_64_M,אחוז שינוי לעומת אשתקד (ציר משני),אחוז שינוי לעומת אשתקד (ציר משני),2,YoY,Secondary,Mapped
+4ace0be62771c9a84fc1,g07,LF_R_EDUC0_8_Q_SA,0-8,0-8,1,Raw,Primary,Mapped
+69a47106c48c14b9ae28,g07,LF_R_EDUC9_10_Q_SA,9-10,9-10,2,Raw,Primary,Mapped
+0413bf0e5928865fc98a,g07,LF_R_EDUC11_12_Q_SA,11-12,11-12,3,Raw,Primary,Mapped
+ef12137cd13d628e5419,g07,LF_R_EDUC13_15_Q_SA,13-15,13-15,4,Raw,Primary,Mapped
+2879df25e8abdb37be3e,g07,LF_R_EDUC16UP_Q_SA,16+,16+,5,Raw,Primary,Mapped
+04064898cee28274ffba,g08,POP_EDUC0_8_Q,0-8,0-8,1,Raw,Primary,Mapped
+f5d76e62327e71acb324,g08,POP_EDUC9_10_Q,9-10,9-10,2,Raw,Primary,Mapped
+1d3566318589effb605d,g08,POP_EDUC11_12_Q,11-12,11-12,3,Raw,Primary,Mapped
+3a3853516368c3fe924d,g08,POP_EDUC13UP_Q,13+,13+,4,Raw,Primary,Mapped
+23e8213f110b3612d8de,g09,EP_M_SA,מספר משרות (אלפים),מספר משרות (אלפים),1,YoY_MA3,Primary,Mapped
+c9b4989721eabb735658,g09,EP_8_M_SA,ענפי השירותים הציבוריים,ענפי השירותים הציבוריים,2,YoY_MA3,Primary,Mapped
+3618e5a3e49926e158a5,g09,EP_M_SA,"סה""כ","סה""כ",3,YoY_MA3,Primary,Mapped
+d3d9113a31a130d3e63f,g09,EP_BS_M_SA,"סה""כ","סה""כ",4,YoY_MA3,Primary,Mapped
+ac15ad4c38ce532c9a46,g10,EM_M_SA,שיעור שינוי,שיעור שינוי,1,YoY_MA3,Primary,Mapped
+fc1bd32644df0bdc11a0,g10,EM_M_SA,מספר מועסקים באלפים (ציר משני),מספר מועסקים באלפים (ציר משני),2,MA3,Secondary,Mapped
+6e908b66c40b5e65d05c,g11,WT_NO_FRN_Q_SA,"סה""כ","סה""כ",1,Raw,Primary,Mapped
+d2ae9619855079eb9fb7,g11,WT_8_NO_FRN_Q_SA,השירותים הציבוריים,השירותים הציבוריים,2,Raw,Primary,Mapped
+330cf8e1fa36a41b8a22,g11,WT_BS_NO_FRN_Q_SA,הסקטור העסקי,הסקטור העסקי,3,Raw,Primary,Mapped
+fa74fe382304a6a207a4,g12,CLS11_LMS_JOB_OPENINGS_L_M_N_M_SA,שירותים עסקיים,שירותים עסקיים,1,Raw,Primary,Mapped
+8b6ef20682ce8024f45c,g12,CLS11_LMS_JOB_OPENINGS_Q_M_SA,"בריאות, רווחה וסעד","בריאות, רווחה וסעד",2,Raw,Primary,Mapped
+8c26d8128ee56a37dadb,g12,CLS11_LMS_JOB_OPENINGS_J_M_SA,מידע ותקשורת,מידע ותקשורת,3,Raw,Primary,Mapped
+1b932779c9b3391d5a21,g12,CLS11_LMS_JOB_OPENINGS_I_G_M_SA,מסחר ושירותי אירוח ואוכל,מסחר ושירותי אירוח ואוכל,4,Raw,Primary,Mapped
+124724dd6004059a4c0b,g12,JOB_OPENINGS_B_C_D_E_F_M_SA,"בינוי, תעשיה, כרייה וחרושת וחשמל ומים","בינוי, תעשיה, כרייה וחרושת וחשמל ומים",5,Raw,Primary,Mapped
+ab8acdfa20a21cb4c04d,g12,JOB_OPENINGS_R_S_P_K_H_M_SA,אחר,אחר,6,Raw,Primary,Mapped
+1ab6d2c957967a9b6077,g13,UE_M_SA,מספר בלתי מועסקים (אלפים),מספר בלתי מועסקים (אלפים),1,Raw,Primary,Mapped
+af776a856c701d45ca3f,g13,UE_R_A25_64_M_SA,"סה""כ","סה""כ",2,Raw,Primary,Mapped
+62b58c0cfbe232309fcc,g13,UE_R_A25_64_FEM_M_SA,נשים,נשים,3,Raw,Primary,Mapped
+b591bca859a776617cdc,g13,UE_R_A25_64_MAL_M_SA,גברים,גברים,4,Raw,Primary,Mapped
+12d2b7333911fb34f750,g14,UE_R_W27_Q,"אחוז המחפשים עבודה מעל חצי שנה (shown as ""ממוצע נע 4 רבעונים"")","אחוז המחפשים עבודה מעל חצי שנה (shown as ""ממוצע נע 4 רבעונים"")",1,Raw,Primary,Mapped
+62f92f427c71ffff8be0,g14,UE_W27_Q,מעל לחצי שנה (ציר משני),מעל לחצי שנה (ציר משני),2,Raw,Secondary,Mapped
+fad4d1001ccc3132d612,g14,UE_W1_8_Q,עד חודשיים (ציר משני),עד חודשיים (ציר משני),3,Raw,Secondary,Mapped
+cd1c7c6214cb60813989,g15,UE_R_EDUC0_8_Q_SA,0-8,0-8,1,Raw,Primary,Mapped
+252b881454e0f573dfef,g15,UE_R_EDUC9_10_Q_SA,9-10,9-10,2,Raw,Primary,Mapped
+6f5c73e8d8a7186eadcd,g15,UE_R_EDUC11_12_Q_SA,11-12,11-12,3,Raw,Primary,Mapped
+b0e6f9b2e3d5d82cc404,g15,UE_R_EDUC13_15_Q_SA,13-15,13-15,4,Raw,Primary,Mapped
+174ad8ebb3645b61adff,g15,UE_R_EDUC16UP_Q_SA,16+,16+,5,Raw,Primary,Mapped
+c8928856805b97996e5e,g16,IES_IN_W,נרשמים,נרשמים,1,Raw,Primary,Mapped
+95ce45589ad5cee3be68,g16,IES_OUT_W,חוזרים לעבודה,חוזרים לעבודה,2,Raw,Primary,Mapped
+f91a287b40a6b2d5fcb2,g17,AW_M_SA,"סה""כ","סה""כ",1,Raw,Primary,Mapped
+260ad595c47cd7b4c40e,g17,AW_BS_M_SA,הסקטור העסקי,הסקטור העסקי,2,Raw,Primary,Mapped
+38b972eb14481c1f5a59,g17,AW_8_M_SA,השירותים הציבוריים,השירותים הציבוריים,3,Raw,Primary,Mapped
+7225189c23d87e8387a5,g17,RW_M_SA,"סה""כ","סה""כ",4,Raw,Primary,Mapped
+a22409c2fa3a8676fadf,g17,RW_BS_M_SA,הסקטור העסקי,הסקטור העסקי,5,Raw,Primary,Mapped
+b9340044dc53c79b7a43,g18,LT423_M,שיעור שינוי,שיעור שינוי,1,Raw,Primary,Mapped
+4ad8f9dfdaca8b89bf6c,g18,LT423_M,שיעור שינוי (ממוצע נע),שיעור שינוי (ממוצע נע),2,Raw,Primary,Mapped
+6c788df0050223cafd1a,g19,AW_M_SA,"סה""כ","סה""כ",1,Raw,Primary,Mapped
+4f3b1e36fbd5f08c4a1d,g19,AW_BS_M_SA,הסקטור העסקי,הסקטור העסקי,2,Raw,Primary,Mapped
+50b70994cde5a51ec125,g19,AW_8_M_SA,ענפי השירותים הציבוריים,ענפי השירותים הציבוריים,3,Raw,Primary,Mapped
+647a79b8909580917e6b,g20,TW_M_SA,אחוז שינוי לעומת אשתקד,אחוז שינוי לעומת אשתקד,1,YoY_MA3,Primary,Mapped
+b930b1ca8129ac4dd9eb,g20,TW_M_SA,"מילארדי ש""ח (ציר משני)","מילארדי ש""ח (ציר משני)",2,Raw,Secondary,Mapped
+529d1e6eb75783cbbea1,g21,CLS11_LMS_EP_A_NO_FRN_M_SA,משרות שכיר · A,משרות שכיר · A,1,Raw,Primary,Mapped
+98a4953b3f3edda4b595,g21,CLS11_LMS_EP_B_NO_FRN_M_SA,משרות שכיר · B,משרות שכיר · B,2,Raw,Primary,Mapped
+b346df6e38e3eb174072,g21,CLS11_LMS_EP_C_NO_FRN_M_SA,משרות שכיר · C,משרות שכיר · C,3,Raw,Primary,Mapped
+f06692a2444c29c4735e,g21,CLS11_LMS_EP_D_E_NO_FRN_M_SA,משרות שכיר · D_E,משרות שכיר · D_E,4,Raw,Primary,Mapped
+cd4d729e268d8fb9194f,g21,CLS11_LMS_EP_F_NO_FRN_M_SA,משרות שכיר · F,משרות שכיר · F,5,Raw,Primary,Mapped
+254857640863bf18425a,g21,CLS11_LMS_EP_G_NO_FRN_M_SA,משרות שכיר · G,משרות שכיר · G,6,Raw,Primary,Mapped
+60973b148bd1474e9325,g21,CLS11_LMS_EP_H_NO_FRN_M_SA,משרות שכיר · H,משרות שכיר · H,7,Raw,Primary,Mapped
+7fec5011e6d9a7d7431d,g21,CLS11_LMS_EP_I_NO_FRN_M_SA,משרות שכיר · I,משרות שכיר · I,8,Raw,Primary,Mapped
+ad3fff2c10508801a75e,g21,CLS11_LMS_EP_J_NO_FRN_M_SA,משרות שכיר · J,משרות שכיר · J,9,Raw,Primary,Mapped
+6e4489dfa5b349d65412,g21,CLS11_LMS_EP_K_NO_FRN_M_SA,משרות שכיר · K,משרות שכיר · K,10,Raw,Primary,Mapped
+f8aacdace6b7e5bb9d7f,g21,CLS11_LMS_EP_L_NO_FRN_M_SA,משרות שכיר · L,משרות שכיר · L,11,Raw,Primary,Mapped
+a2a012857f9c9dbe0420,g21,CLS11_LMS_EP_M_NO_FRN_M_SA,משרות שכיר · M,משרות שכיר · M,12,Raw,Primary,Mapped
+7936cd811283c351aadd,g21,CLS11_LMS_EP_N_NO_FRN_M_SA,משרות שכיר · N,משרות שכיר · N,13,Raw,Primary,Mapped
+bb0757a9015ef6973a10,g21,CLS11_LMS_EP_O_NO_FRN_M_SA,משרות שכיר · O,משרות שכיר · O,14,Raw,Primary,Mapped
+cce5f2bfc2d107151aae,g21,CLS11_LMS_EP_P_NO_FRN_M_SA,משרות שכיר · P,משרות שכיר · P,15,Raw,Primary,Mapped
+7cb64e849ed56dd1425e,g21,CLS11_LMS_EP_Q_NO_FRN_M_SA,משרות שכיר · Q,משרות שכיר · Q,16,Raw,Primary,Mapped
+52c558ebf256678d07a7,g21,CLS11_LMS_EP_R_NO_FRN_M_SA,משרות שכיר · R,משרות שכיר · R,17,Raw,Primary,Mapped
+5ba993c2751563226de7,g21,CLS11_LMS_EP_S_NO_FRN_M_SA,משרות שכיר · S,משרות שכיר · S,18,Raw,Primary,Mapped
+8e450289f8221df45648,g21,LS11_LMS_EP_NO_FRN_M_SA,משרות שכיר,משרות שכיר,19,Raw,Primary,Needs provider verification
+4e661e3a6ad4e0d3eb82,g22,LS11_LMS_AW_A_NO_FRN_M_SA,שכר נומינלי · A,שכר נומינלי · A,1,Raw,Primary,Needs provider verification
+e0286ba326d99fbc0ff7,g22,LS11_LMS_AW_B_NO_FRN_M_SA,שכר נומינלי · B,שכר נומינלי · B,2,Raw,Primary,Needs provider verification
+92484067983f8a85a9e9,g22,LS11_LMS_AW_C_NO_FRN_M_SA,שכר נומינלי · C,שכר נומינלי · C,3,Raw,Primary,Needs provider verification
+01a4adbb3be9823c031d,g22,LS11_LMS_AW_D_E_NO_FRN_M_SA,שכר נומינלי · D_E,שכר נומינלי · D_E,4,Raw,Primary,Needs provider verification
+9f7264065006d3721cf9,g22,LS11_LMS_AW_F_NO_FRN_M_SA,שכר נומינלי · F,שכר נומינלי · F,5,Raw,Primary,Needs provider verification
+b86ba0670b1847ef1f6e,g22,LS11_LMS_AW_G_NO_FRN_M_SA,שכר נומינלי · G,שכר נומינלי · G,6,Raw,Primary,Needs provider verification
+3254864d3bfc2301b706,g22,LS11_LMS_AW_H_NO_FRN_M_SA,שכר נומינלי · H,שכר נומינלי · H,7,Raw,Primary,Needs provider verification
+05eb8098710e3bc51a34,g22,LS11_LMS_AW_I_NO_FRN_M_SA,שכר נומינלי · I,שכר נומינלי · I,8,Raw,Primary,Needs provider verification
+f0ed06c0e34ff9d14421,g22,LS11_LMS_AW_J_NO_FRN_M_SA,שכר נומינלי · J,שכר נומינלי · J,9,Raw,Primary,Needs provider verification
+22c2b78295f347bc7aa9,g22,LS11_LMS_AW_K_NO_FRN_M_SA,שכר נומינלי · K,שכר נומינלי · K,10,Raw,Primary,Needs provider verification
+83d56b9a312a240b00e7,g22,LS11_LMS_AW_L_NO_FRN_M_SA,שכר נומינלי · L,שכר נומינלי · L,11,Raw,Primary,Needs provider verification
+6073e06b3eaee26f35a4,g22,LS11_LMS_AW_M_NO_FRN_M_SA,שכר נומינלי · M,שכר נומינלי · M,12,Raw,Primary,Needs provider verification
+d5d3264074a3893472cd,g22,LS11_LMS_AW_N_NO_FRN_M_SA,שכר נומינלי · N,שכר נומינלי · N,13,Raw,Primary,Needs provider verification
+011ce21d90e2d3655016,g22,LS11_LMS_AW_O_NO_FRN_M_SA,שכר נומינלי · O,שכר נומינלי · O,14,Raw,Primary,Needs provider verification
+486f736bcd33145242a5,g22,LS11_LMS_AW_P_NO_FRN_M_SA,שכר נומינלי · P,שכר נומינלי · P,15,Raw,Primary,Needs provider verification
+e224f12b220f49a3da50,g22,LS11_LMS_AW_Q_NO_FRN_M_SA,שכר נומינלי · Q,שכר נומינלי · Q,16,Raw,Primary,Needs provider verification
+3cb396751c71e1e9d903,g22,LS11_LMS_AW_R_NO_FRN_M_SA,שכר נומינלי · R,שכר נומינלי · R,17,Raw,Primary,Needs provider verification
+9bf93de8bf173cf88a55,g22,LS11_LMS_AW_S_NO_FRN_M_SA,שכר נומינלי · S,שכר נומינלי · S,18,Raw,Primary,Needs provider verification
+85930f9f0c76bfa582b4,g22,AW_NO_FRN_M_SA,שכר נומינלי,שכר נומינלי,19,Raw,Primary,Mapped
+8f6229d9487651265aeb,g23,CLS11_WT_A_NO_FRN_M_SA,תשומת עבודה · A,תשומת עבודה · A,1,Raw,Primary,Mapped
+ba498ac529178d1934b4,g23,CLS11_WT_B_NO_FRN_M_SA,תשומת עבודה · B,תשומת עבודה · B,2,Raw,Primary,Mapped
+4fb5cab2e48e56ffcaf4,g23,CLS11_WT_C_NO_FRN_M_SA,תשומת עבודה · C,תשומת עבודה · C,3,Raw,Primary,Mapped
+b9423535ef9f9a62c2c4,g23,CLS11_WT_D_E_NO_FRN_M_SA,תשומת עבודה · D_E,תשומת עבודה · D_E,4,Raw,Primary,Mapped
+844a529de44fb4c6230a,g23,CLS11_WT_F_NO_FRN_M_SA,תשומת עבודה · F,תשומת עבודה · F,5,Raw,Primary,Mapped
+4e0636b57c5bc342738b,g23,CLS11_WT_G_NO_FRN_M_SA,תשומת עבודה · G,תשומת עבודה · G,6,Raw,Primary,Mapped
+8d7c42f5e6a4c6ad538b,g23,CLS11_WT_H_NO_FRN_M_SA,תשומת עבודה · H,תשומת עבודה · H,7,Raw,Primary,Mapped
+387747d7969ddcfb0fd0,g23,CLS11_WT_I_NO_FRN_M_SA,תשומת עבודה · I,תשומת עבודה · I,8,Raw,Primary,Mapped
+974da0f05e16edfd7b0c,g23,CLS11_WT_J_NO_FRN_M_SA,תשומת עבודה · J,תשומת עבודה · J,9,Raw,Primary,Mapped
+36ea6cb82d19c8aa4b43,g23,CLS11_WT_K_NO_FRN_M_SA,תשומת עבודה · K,תשומת עבודה · K,10,Raw,Primary,Mapped
+6dd985bfd96ae2496b0e,g23,CLS11_WT_L_NO_FRN_M_SA,תשומת עבודה · L,תשומת עבודה · L,11,Raw,Primary,Mapped
+2cc80d04932292ad901e,g23,CLS11_WT_M_NO_FRN_M_SA,תשומת עבודה · M,תשומת עבודה · M,12,Raw,Primary,Mapped
+83fb31cf376593161113,g23,CLS11_WT_N_NO_FRN_M_SA,תשומת עבודה · N,תשומת עבודה · N,13,Raw,Primary,Mapped
+eee64a023a7484bef4d0,g23,CLS11_WT_O_NO_FRN_M_SA,תשומת עבודה · O,תשומת עבודה · O,14,Raw,Primary,Mapped
+735947c559e09e0a5e40,g23,CLS11_WT_P_NO_FRN_M_SA,תשומת עבודה · P,תשומת עבודה · P,15,Raw,Primary,Mapped
+f6ebaf9527cf46e04149,g23,CLS11_WT_Q_NO_FRN_M_SA,תשומת עבודה · Q,תשומת עבודה · Q,16,Raw,Primary,Mapped
+a26a2fc706ddac2a4874,g23,CLS11_WT_R_NO_FRN_M_SA,תשומת עבודה · R,תשומת עבודה · R,17,Raw,Primary,Mapped
+881e15ec1b9e221a5def,g23,CLS11_WT_S_NO_FRN_M_SA,תשומת עבודה · S,תשומת עבודה · S,18,Raw,Primary,Mapped
+7fe48a894a0b801e6ee0,g23,CLS11_WT_NO_FRN_M_SA,תשומת עבודה,תשומת עבודה,19,Raw,Primary,Mapped
+55c6aac31a9b22c5fce6,g24,CLS11_LMS_JOB_OPENINGS_B_C_D_E_M_SA,משרות פנויות · B_C_D_E,משרות פנויות · B_C_D_E,1,Raw,Primary,Mapped
+ab9951126d5fd3cebfff,g24,CLS11_LMS_JOB_OPENINGS_F_M_SA,משרות פנויות · F,משרות פנויות · F,2,Raw,Primary,Mapped
+eb0c62707d7557cc376e,g24,CLS11_LMS_JOB_OPENINGS_G_M_SA,משרות פנויות · G,משרות פנויות · G,3,Raw,Primary,Mapped
+d3c1c2044c27658277af,g24,CLS11_LMS_JOB_OPENINGS_H_M_SA,משרות פנויות · H,משרות פנויות · H,4,Raw,Primary,Mapped
+8f5d76842f54df9ed5b5,g24,CLS11_LMS_JOB_OPENINGS_I_M_SA,משרות פנויות · I,משרות פנויות · I,5,Raw,Primary,Mapped
+dcad15bdc8027779cb9a,g24,CLS11_LMS_JOB_OPENINGS_J_M_SA,משרות פנויות · J,משרות פנויות · J,6,Raw,Primary,Mapped
+fb09ce3cd923512ef070,g24,CLS11_LMS_JOB_OPENINGS_K_M_SA,משרות פנויות · K,משרות פנויות · K,7,Raw,Primary,Mapped
+da6c8cfa5dcd980dbf80,g24,CLS11_LMS_JOB_OPENINGS_L_M_N_M_SA,משרות פנויות · L_M_N,משרות פנויות · L_M_N,8,Raw,Primary,Mapped
+d80bcd235245dd61a758,g24,CLS11_LMS_JOB_OPENINGS_P_M_SA,משרות פנויות · P,משרות פנויות · P,9,Raw,Primary,Mapped
+ad4fab6c754e9dd314a7,g24,CLS11_LMS_JOB_OPENINGS_Q_M_SA,משרות פנויות · Q,משרות פנויות · Q,10,Raw,Primary,Mapped
+6f9d7bd087977008ac7f,g24,CLS11_LMS_JOB_OPENINGS_R_S_M_SA,משרות פנויות · R_S,משרות פנויות · R_S,11,Raw,Primary,Mapped
+3c3921eb0aafcb43ad58,g24,LMS_JOB_OPENINGS_TOT_M_SA,משרות פנויות,משרות פנויות,12,Raw,Primary,Mapped
+9e02864c6dac93e1543b,kpi05,EP_M_SA,משרות שכיר (באלפים),משרות שכיר,1,Raw,Primary,Mapped
+3b54b8ce8f51d5443cda,kpi05,EP_BS_M_SA,משרות שכיר (באלפים),משרות שכיר (באלפים),2,Raw,Primary,Mapped
+106501f00fd681220431,kpi05,EP_8_M_SA,משרות שכיר (באלפים),משרות שכיר (באלפים),3,Raw,Primary,Mapped
+d21a5c66f09482fec157,kpi06,EM_M_SA,מועסקים (באלפים),מועסקים,1,Raw,Primary,Mapped
+206a383ef34970a64ba6,kpi06,EM_MAL_M_SA,מועסקים (באלפים),מועסקים (באלפים),2,Raw,Primary,Mapped
+3381c115a10a4f349e9e,kpi06,EM_FEM_M_SA,מועסקים (באלפים),מועסקים (באלפים),3,Raw,Primary,Mapped
+bad0e290f07b89f91b39,kpi07,WT_NO_FRN_Q_SA,תשומת עבודה (מיליוני שעות בעבודה),תשומת עבודה (מיליוני שעות בעבודה),1,Raw,Primary,Mapped
+8a27df168d50468b0beb,kpi07,WT_BS_NO_FRN_Q_SA,תשומת עבודה (מיליוני שעות בעבודה),תשומת עבודה (מיליוני שעות בעבודה),2,Raw,Primary,Mapped
+1fa524120bb8cf258217,kpi07,WT_8_NO_FRN_Q_SA,תשומת עבודה (מיליוני שעות בעבודה),תשומת עבודה (מיליוני שעות בעבודה),3,Raw,Primary,Mapped
+50f196e17bf3ab0947c2,kpi08,EM_R_A25_64_M_SA,שיעור תעסוקה (באחוזים),תעסוקה,1,Raw,Primary,Mapped
+df91317b7331a4fbeea4,kpi09,UE_R_A25_64_M_SA,שיעור בלתי מועסקים 25-64,בלתי מועסקים,1,Raw,Primary,Mapped
+8e9d1fc2439c9f9d2edb,kpi10,UE_A25_64_M_SA,מספר בלתי מועסקים 25-64 (באלפים),מספר בלתי מועסקים 25-64 (באלפים),1,Raw,Primary,Mapped
+88f3096ff325591f8fc3,kpi11,UE_R_W27_Q,בלתי מועסקים המחפשים עבודה מעל חצי שנה,בלתי מועסקים המחפשים עבודה מעל חצי שנה,1,Raw,Primary,Mapped
+ba72a705cd92c5db05d8,kpi11,UE_W27_Q,בלתי מועסקים המחפשים עבודה מעל חצי שנה,בלתי מועסקים המחפשים עבודה מעל חצי שנה,2,Raw,Primary,Mapped
+ae2a3457c71fe6b03c63,kpi12,IES_IN_W,דורשי עבודה שבועיים,דורשי עבודה שבועיים,1,Raw,Primary,Mapped
+4a1b15ab4c6d4226eec7,kpi12,IES_OUT_W,דורשי עבודה שבועיים,דורשי עבודה שבועיים,2,Raw,Primary,Mapped
+9c24cc26c728e97190c5,kpi13,AW_M_SA,"שכר נומינלי (ש""ח)",סה״כ,1,Raw,Primary,Mapped
+cdd32aea4d2e39ba7bd7,kpi13,AW_BS_M_SA,"שכר נומינלי (ש""ח)",הסקטור העסקי,2,Raw,Primary,Mapped
+e5a20bd4a1af05c830ad,kpi13,AW_8_M_SA,"שכר נומינלי (ש""ח)",השירותים הציבוריים,3,Raw,Primary,Mapped
+e16435abc5d68e95410b,kpi14,RW_M_SA,"שכר ריאלי (ש""ח)","שכר ריאלי (ש""ח)",1,Raw,Primary,Mapped
+bd783ed83f3e0ab122ba,kpi14,RW_BS_M_SA,"שכר ריאלי (ש""ח)","שכר ריאלי (ש""ח)",2,Raw,Primary,Mapped
+488d46a0608dca46148d,kpi14,RW_8_M_SA,"שכר ריאלי (ש""ח)","שכר ריאלי (ש""ח)",3,Raw,Primary,Mapped
+eb364537e9d26347392e,kpi15,TW_M_SA,"תשלומי שכר (מילארדי ש""ח)","תשלומי שכר (מילארדי ש""ח)",1,Raw,Primary,Mapped
+f1c35b4a80437ccf4d95,kpi16,LT423_M,"תקבולי מס בריאות משכירים (מיליוני ש""ח)","תקבולי מס בריאות משכירים (מיליוני ש""ח)",1,Raw,Primary,Mapped

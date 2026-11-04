@@ -1,0 +1,236 @@
+table 'MeasuresTable'
+	lineageTag: 925927aa-a1d2-5459-acc5-c6e752721a95
+
+	column 'Column'
+		dataType: int64
+		lineageTag: 43bf543b-8c34-5b65-9b0e-0eacd685863e
+		isHidden
+		summarizeBy: none
+		sourceColumn: [Column]
+
+	partition 'MeasuresTable' = calculated
+		mode: import
+		source =
+			ROW("Column", 1)
+
+	measure 'Observation Count' =
+			COUNTROWS('Fact')
+		formatString: #,0
+		displayFolder: Quality
+		lineageTag: a586bcaf-9a80-57bf-a8ef-d12838b4c00c
+
+	measure 'Data Status' =
+			IF([Observation Count] = 0, "יש להוסיף נתוני סדרות ולרענן את הדוח", "")
+		displayFolder: Quality
+		lineageTag: d8205b5e-41cb-553c-8eb5-54eec1d17b3b
+
+	/// Single-series value; chart context is one observation date. Does not sum rates over time.
+	measure 'Raw Value' =
+			IF(HASONEVALUE('Fact'[SERIES_CODE]), AVERAGE('Fact'[OBS_VALUE]))
+		formatString: #,0.0
+		displayFolder: Base
+		lineageTag: 86e45391-58b2-5182-83a9-b736dec7a8df
+
+	measure 'Mapped Raw' =
+			VAR Codes = VALUES('SeriesGraphTbl'[series_code_id])
+			RETURN IF(COUNTROWS(Codes) = 1, CALCULATE([Raw Value], TREATAS(Codes, 'Fact'[SERIES_CODE])))
+		formatString: #,0.0
+		displayFolder: Base
+		lineageTag: 04da7751-86a4-5ff7-80b3-2c346f6acf30
+
+	measure 'YoY' =
+			VAR CurrentDate = MAX('Date'[Date])
+			VAR Code = SELECTEDVALUE('SeriesGraphTbl'[series_code_id])
+			VAR CurrentValue = [Mapped Raw]
+			VAR PreviousValue = CALCULATE(AVERAGE('Fact'[OBS_VALUE]), REMOVEFILTERS('Date'), REMOVEFILTERS('Date2'), REMOVEFILTERS('Date Periods'), REMOVEFILTERS('Date Periods2'), 'Fact'[TIME_PERIOD] = EDATE(CurrentDate, -12), TREATAS({Code}, 'Fact'[SERIES_CODE]))
+			RETURN IF(NOT ISBLANK(CurrentValue) && NOT ISBLANK(PreviousValue), DIVIDE(CurrentValue - PreviousValue, PreviousValue) * 100)
+		formatString: 0.0"%"
+		displayFolder: Transforms
+		lineageTag: 713af3d9-b203-5de1-9316-c1dd5e22472f
+
+	measure 'Moving Average 3M' =
+			VAR CurrentDate = MAX('Date'[Date])
+			VAR Code = SELECTEDVALUE('SeriesGraphTbl'[series_code_id])
+			VAR Present = [Mapped Raw]
+			VAR ObservationDates = CALCULATETABLE(VALUES('Fact'[TIME_PERIOD]), REMOVEFILTERS('Date'), REMOVEFILTERS('Date2'), REMOVEFILTERS('Date Periods'), REMOVEFILTERS('Date Periods2'), TREATAS({Code}, 'Fact'[SERIES_CODE]), 'Fact'[TIME_PERIOD] > EDATE(CurrentDate, -3), 'Fact'[TIME_PERIOD] <= CurrentDate, NOT ISBLANK('Fact'[OBS_VALUE]))
+			VAR WindowValues = ADDCOLUMNS(ObservationDates, "__v", VAR PointDate = 'Fact'[TIME_PERIOD] RETURN CALCULATE([Mapped Raw], REMOVEFILTERS('Date'), REMOVEFILTERS('Date2'), REMOVEFILTERS('Date Periods'), REMOVEFILTERS('Date Periods2'), 'Date'[Date] = PointDate))
+			RETURN IF(NOT ISBLANK(Present) && COUNTROWS(FILTER(WindowValues, NOT ISBLANK([__v]))) = 3, AVERAGEX(WindowValues, [__v]))
+		formatString: #,0.0
+		displayFolder: Transforms
+		lineageTag: d81b2ab5-875f-5599-a33e-51fbb54c6eaf
+
+	measure 'Moving Average 4Q' =
+			VAR CurrentDate = MAX('Date'[Date])
+			VAR Code = SELECTEDVALUE('SeriesGraphTbl'[series_code_id])
+			VAR Present = [Mapped Raw]
+			VAR ObservationDates = CALCULATETABLE(VALUES('Fact'[TIME_PERIOD]), REMOVEFILTERS('Date'), REMOVEFILTERS('Date2'), REMOVEFILTERS('Date Periods'), REMOVEFILTERS('Date Periods2'), TREATAS({Code}, 'Fact'[SERIES_CODE]), 'Fact'[TIME_PERIOD] > EDATE(CurrentDate, -12), 'Fact'[TIME_PERIOD] <= CurrentDate, NOT ISBLANK('Fact'[OBS_VALUE]))
+			VAR WindowValues = ADDCOLUMNS(ObservationDates, "__v", VAR PointDate = 'Fact'[TIME_PERIOD] RETURN CALCULATE([Mapped Raw], REMOVEFILTERS('Date'), REMOVEFILTERS('Date2'), REMOVEFILTERS('Date Periods'), REMOVEFILTERS('Date Periods2'), 'Date'[Date] = PointDate))
+			RETURN IF(NOT ISBLANK(Present) && COUNTROWS(FILTER(WindowValues, NOT ISBLANK([__v]))) = 4, AVERAGEX(WindowValues, [__v]))
+		formatString: #,0.0
+		displayFolder: Transforms
+		lineageTag: 6068152d-4a12-533b-8a84-b277df996762
+
+	measure 'YoY Moving Average 3M' =
+			VAR CurrentDate = MAX('Date'[Date])
+			VAR Code = SELECTEDVALUE('SeriesGraphTbl'[series_code_id])
+			VAR Present = [Mapped Raw]
+			VAR ObservationDates = CALCULATETABLE(VALUES('Fact'[TIME_PERIOD]), REMOVEFILTERS('Date'), REMOVEFILTERS('Date2'), REMOVEFILTERS('Date Periods'), REMOVEFILTERS('Date Periods2'), TREATAS({Code}, 'Fact'[SERIES_CODE]), 'Fact'[TIME_PERIOD] > EDATE(CurrentDate, -3), 'Fact'[TIME_PERIOD] <= CurrentDate, NOT ISBLANK('Fact'[OBS_VALUE]))
+			VAR WindowValues = ADDCOLUMNS(ObservationDates, "__v", VAR PointDate = 'Fact'[TIME_PERIOD] RETURN CALCULATE([YoY], REMOVEFILTERS('Date'), REMOVEFILTERS('Date2'), REMOVEFILTERS('Date Periods'), REMOVEFILTERS('Date Periods2'), 'Date'[Date] = PointDate))
+			RETURN IF(NOT ISBLANK(Present) && COUNTROWS(FILTER(WindowValues, NOT ISBLANK([__v]))) = 3, AVERAGEX(WindowValues, [__v]))
+		formatString: #,0.0
+		displayFolder: Transforms
+		lineageTag: 338e64de-7725-582c-879b-1393737a8366
+
+	measure 'Chart Value' =
+			SWITCH(SELECTEDVALUE('SeriesGraphTbl'[transform], "Raw"),
+			    "YoY_MA3", [YoY Moving Average 3M], "MA3", [Moving Average 3M],
+			    "MA4Q", [Moving Average 4Q], "YoY", [YoY], [Mapped Raw])
+		formatString: #,0.0
+		displayFolder: Charts
+		lineageTag: e3b1ec63-8f15-56f5-9c7b-849009dbd5f2
+
+	measure 'Unemployment' =
+			CALCULATE([Mapped Raw], REMOVEFILTERS('GraphTbl'), REMOVEFILTERS('SeriesGraphTbl'), 'SeriesGraphTbl'[graph_id] = "g01", 'SeriesGraphTbl'[series_code_id] = "UE_R_A25_64_M_SA", 'SeriesGraphTbl'[transform] = "Raw")
+		formatString: 0.0"%"
+		displayFolder: Home charts
+		lineageTag: c9bdb9d8-ef0e-501f-8845-0feef487368a
+
+	measure 'Participation' =
+			CALCULATE([Mapped Raw], REMOVEFILTERS('GraphTbl'), REMOVEFILTERS('SeriesGraphTbl'), 'SeriesGraphTbl'[graph_id] = "g01", 'SeriesGraphTbl'[series_code_id] = "LF_R_A25_64_M_SA", 'SeriesGraphTbl'[transform] = "Raw")
+		formatString: 0.0"%"
+		displayFolder: Home charts
+		lineageTag: f4eda783-eff1-596d-a0c6-eddc6a5a8c95
+
+	measure 'Employment Rate' =
+			CALCULATE([Mapped Raw], REMOVEFILTERS('GraphTbl'), REMOVEFILTERS('SeriesGraphTbl'), 'SeriesGraphTbl'[graph_id] = "g01", 'SeriesGraphTbl'[series_code_id] = "EM_R_A25_64_M_SA", 'SeriesGraphTbl'[transform] = "Raw")
+		formatString: 0.0"%"
+		displayFolder: Home charts
+		lineageTag: b54144de-8f25-500d-affd-c47e9a5d4f1b
+
+	measure 'Employee Jobs YoY' =
+			CALCULATE([YoY Moving Average 3M], REMOVEFILTERS('GraphTbl'), REMOVEFILTERS('SeriesGraphTbl'), 'SeriesGraphTbl'[graph_id] = "g02", 'SeriesGraphTbl'[series_code_id] = "EP_M_SA", 'SeriesGraphTbl'[transform] = "YoY_MA3")
+		formatString: 0.0"%"
+		displayFolder: Home charts
+		lineageTag: 571a71f6-fb2b-5388-815a-1112050a8478
+
+	measure 'Employed YoY' =
+			CALCULATE([YoY Moving Average 3M], REMOVEFILTERS('GraphTbl'), REMOVEFILTERS('SeriesGraphTbl'), 'SeriesGraphTbl'[graph_id] = "g02", 'SeriesGraphTbl'[series_code_id] = "EM_M_SA", 'SeriesGraphTbl'[transform] = "YoY_MA3")
+		formatString: 0.0"%"
+		displayFolder: Home charts
+		lineageTag: 61aca553-fbd5-55c9-832a-6ddeff06dc56
+
+	measure 'Vacancies' =
+			CALCULATE([Moving Average 3M], REMOVEFILTERS('GraphTbl'), REMOVEFILTERS('SeriesGraphTbl'), 'SeriesGraphTbl'[graph_id] = "g03", 'SeriesGraphTbl'[series_code_id] = "LMS_JOB_OPENINGS_TOT_M_SA", 'SeriesGraphTbl'[transform] = "MA3")
+		formatString: #,0
+		displayFolder: Home charts
+		lineageTag: 48fceb8a-b24d-5f27-95fc-96040c69ed05
+
+	measure 'Vacancy Rate' =
+			CALCULATE([Moving Average 3M], REMOVEFILTERS('GraphTbl'), REMOVEFILTERS('SeriesGraphTbl'), 'SeriesGraphTbl'[graph_id] = "g03", 'SeriesGraphTbl'[series_code_id] = "LMS_JOB_OPENINGS_TOT_PCT_M_SA", 'SeriesGraphTbl'[transform] = "MA3")
+		formatString: 0.0"%"
+		displayFolder: Home charts
+		lineageTag: 74aa8238-5c93-5a9b-8386-725c4f9251ea
+
+	measure 'Wage Change' =
+			CALCULATE([Mapped Raw], REMOVEFILTERS('GraphTbl'), REMOVEFILTERS('SeriesGraphTbl'), 'SeriesGraphTbl'[graph_id] = "g04", 'SeriesGraphTbl'[series_code_id] = "AW_ANNPCT_Q_SA", 'SeriesGraphTbl'[transform] = "Raw")
+		formatString: 0.0"%"
+		displayFolder: Home charts
+		lineageTag: 2c674660-e05b-5167-b58d-1cc2e6b6ed71
+
+	measure 'Wage Change MA4Q' =
+			CALCULATE([Moving Average 4Q], REMOVEFILTERS('GraphTbl'), REMOVEFILTERS('SeriesGraphTbl'), 'SeriesGraphTbl'[graph_id] = "g04", 'SeriesGraphTbl'[series_code_id] = "AW_ANNPCT_Q_SA", 'SeriesGraphTbl'[transform] = "MA4Q")
+		formatString: 0.0"%"
+		displayFolder: Home charts
+		lineageTag: e5288e58-45f3-5063-99da-f0d1e33b76ad
+
+	/// Latest common nonblank period for all series in the card; individual row filters are removed.
+	measure 'KPI As Of' =
+			VAR Codes = CALCULATETABLE(VALUES('SeriesGraphTbl'[series_code_id]), ALLEXCEPT('SeriesGraphTbl', 'SeriesGraphTbl'[graph_id]))
+			VAR N = COUNTROWS(Codes)
+			VAR DatesWithAllSeries = FILTER(ALL('Fact'[TIME_PERIOD]),
+			    CALCULATE(DISTINCTCOUNT('Fact'[SERIES_CODE]), REMOVEFILTERS('Date'), REMOVEFILTERS('Date2'), REMOVEFILTERS('Date Periods'), REMOVEFILTERS('Date Periods2'), TREATAS(Codes, 'Fact'[SERIES_CODE]), NOT ISBLANK('Fact'[OBS_VALUE])) = N)
+			RETURN IF(N > 0, MAXX(DatesWithAllSeries, 'Fact'[TIME_PERIOD]))
+		formatString: MMMM yyyy
+		displayFolder: KPI
+		lineageTag: 5dd22c47-2141-53ff-8ecc-db47d4d360cc
+
+	measure 'KPI Month' =
+			IF(ISBLANK([KPI As Of]), "—", FORMAT([KPI As Of], "MMMM yyyy", "en-US"))
+		displayFolder: KPI
+		lineageTag: 222072d4-4492-5233-b04b-9ad069d1a327
+
+	measure 'KPI Value' =
+			VAR Code = SELECTEDVALUE('SeriesGraphTbl'[series_code_id])
+			VAR AsOfDate = [KPI As Of]
+			RETURN IF(NOT ISBLANK(AsOfDate), CALCULATE(AVERAGE('Fact'[OBS_VALUE]), REMOVEFILTERS('Date'), REMOVEFILTERS('Date2'), REMOVEFILTERS('Date Periods'), REMOVEFILTERS('Date Periods2'), TREATAS({Code}, 'Fact'[SERIES_CODE]), 'Fact'[TIME_PERIOD] = AsOfDate))
+		formatString: #,0.0
+		displayFolder: KPI
+		lineageTag: 2a5a4e66-e545-53f5-b365-43384fce4922
+
+	measure 'KPI Previous Value' =
+			VAR Code = SELECTEDVALUE('SeriesGraphTbl'[series_code_id])
+			VAR AsOfDate = [KPI As Of]
+			VAR PreviousDate = CALCULATE(MAX('Fact'[TIME_PERIOD]), REMOVEFILTERS('Date'), REMOVEFILTERS('Date2'), REMOVEFILTERS('Date Periods'), REMOVEFILTERS('Date Periods2'), TREATAS({Code}, 'Fact'[SERIES_CODE]), 'Fact'[TIME_PERIOD] < AsOfDate, NOT ISBLANK('Fact'[OBS_VALUE]))
+			RETURN IF(NOT ISBLANK(PreviousDate), CALCULATE(AVERAGE('Fact'[OBS_VALUE]), REMOVEFILTERS('Date'), REMOVEFILTERS('Date2'), REMOVEFILTERS('Date Periods'), REMOVEFILTERS('Date Periods2'), TREATAS({Code}, 'Fact'[SERIES_CODE]), 'Fact'[TIME_PERIOD] = PreviousDate))
+		formatString: #,0.0
+		displayFolder: KPI
+		lineageTag: a67db8d1-cd03-57f5-bbbe-8f7e06e0cca9
+
+	measure 'Is Rate' =
+			VAR Code = SELECTEDVALUE('SeriesGraphTbl'[series_code_id], "")
+			RETURN CONTAINSSTRING(Code, "_R_") || CONTAINSSTRING(Code, "_PCT_")
+		displayFolder: KPI
+		lineageTag: 47afd2a2-059f-5dc4-8e35-73ad09da854b
+
+	measure 'KPI Change' =
+			VAR V = [KPI Value]
+			VAR P = [KPI Previous Value]
+			RETURN IF(NOT ISBLANK(V) && NOT ISBLANK(P), IF([Is Rate], V - P, DIVIDE(V - P, P)))
+		formatString: 0.0
+		displayFolder: KPI
+		lineageTag: fcf4dd5c-c4be-58dc-a286-222380a37024
+
+	measure 'KPI Value Text' =
+			IF(ISBLANK([KPI Value]), "—", FORMAT([KPI Value], IF([Is Rate], "0.0", "#,0")))
+		displayFolder: KPI
+		lineageTag: 5f6cce8e-eb0f-53e1-ba66-ef3b3888b6e0
+
+	measure 'KPI Change Text' =
+			IF(ISBLANK([KPI Change]), "—", FORMAT([KPI Change], IF([Is Rate], "0.0;-0.0;0.0", "0.0%;-0.0%;0.0%")))
+		displayFolder: KPI
+		lineageTag: ae0a0966-ad99-55dd-93bd-8a1e902876ea
+
+	measure 'KPI Trend' =
+			IF(ISBLANK([KPI Change]), "", IF([KPI Change] > 0, "↑", IF([KPI Change] < 0, "↓", "→")))
+		displayFolder: KPI
+		lineageTag: 52685303-246d-5a88-b06b-c902edaa387c
+
+	measure 'KPI Sort' =
+			MIN('SeriesGraphTbl'[series_order])
+		formatString: 0
+		displayFolder: KPI
+		lineageTag: e53ee09c-e43f-5654-b1ee-af11980bed2d
+
+	/// Internal export-page ID, not an external download URL.
+	measure 'DownloadLink_LBM_g01' =
+			"export_g01"
+		displayFolder: Navigation
+		lineageTag: f4cbd833-f039-55cc-97db-e3e0b133686f
+
+	/// Internal export-page ID, not an external download URL.
+	measure 'DownloadLink_LBM_g02' =
+			"export_g02"
+		displayFolder: Navigation
+		lineageTag: b0e83746-17f3-521b-b39f-db64224df4b8
+
+	/// Internal export-page ID, not an external download URL.
+	measure 'DownloadLink_LBM_g03' =
+			"export_g03"
+		displayFolder: Navigation
+		lineageTag: aef24ec4-706f-520c-b97c-93ced14fae20
+
+	/// Internal export-page ID, not an external download URL.
+	measure 'DownloadLink_LBM_g04' =
+			"export_g04"
+		displayFolder: Navigation
+		lineageTag: 64d51d9b-2661-59b0-a6e3-c145faa0f829
